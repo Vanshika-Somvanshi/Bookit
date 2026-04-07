@@ -113,10 +113,9 @@ export const AdminDashboardPrimary = () => {
             <HashLoader size={30} color="#eb3656" />
           ) : (
             <p className="admin-dashboard-val">
-              BDT{" "}
+              Rs.{" "}
               {paymentData.length > 0 &&
                 paymentData[0].total_amount.toLocaleString("en-US")}
-              Tk
             </p>
           )}
           <div className="admin-dashboard-category">

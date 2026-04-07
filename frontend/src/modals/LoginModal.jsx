@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import BarLoader from "react-spinners/BarLoader";
 import { useDispatch } from "react-redux";
-import { hideLoginModal, login } from "../reducers/authSlice";
+import { hideLoginModal, login, showSignModal } from "../reducers/authSlice";
 import { loginFailedToast, loginSuccessToast } from "../toasts/toast";
 
 export const LoginModal = () => {
@@ -166,6 +166,19 @@ export const LoginModal = () => {
           <button type="submit" className="btn-reg" disabled={loading}>
             {loading ? <BarLoader color="#e6e6e8" /> : "Sign in"}
           </button>
+
+          <div style={{ textAlign: "center", marginTop: "1rem", color: "#e6e6e8" }}>
+            Don't have an account?{" "}
+            <span
+              style={{ color: "#ef5e78", cursor: "pointer", fontWeight: "bold" }}
+              onClick={() => {
+                dispatch(hideLoginModal());
+                dispatch(showSignModal());
+              }}
+            >
+              Sign up
+            </span>
+          </div>
         </div>
       </form>
     </div>

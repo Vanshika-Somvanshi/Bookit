@@ -17,7 +17,9 @@ export const Features = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/locationFeatures`
         );
-        setFeaturesData(response.data);
+        if (Array.isArray(response.data)) {
+          setFeaturesData(response.data);
+        }
       } catch (err) {
         console.error(err);
       } finally {

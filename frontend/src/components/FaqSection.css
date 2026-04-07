@@ -1,73 +1,131 @@
+/* ─── FAQ Section ─── */
 .faq-section {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-  
-  .faq-heading {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .faq-contents {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .faq-input {
-    width: 100%;
-    max-width: 500px;
-    height: 80px;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .faq-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #eb3656;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .faq-btn:hover {
-    background-color: #c32e46;
-  }
-  
-  .faq-response-container {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 4px;
-    max-width: 500px;
-    text-align: center;
-  }
-  
-  .faq-response-heading {
-    margin-bottom: 0.5rem;
-  }
-  
-  .faq-response-text {
+  padding: 6rem 2rem;
+  position: relative;
+}
 
-    font-size: 1.5rem;
-  }
-  
-  .example-faqs {
-    margin-top: 1.5rem;
-    text-align: left;
-  }
-  
-  .example-faqs h4 {
-    margin-bottom: 0.5rem;
-  }
-  
-  .example-faqs ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-  }
+.faq-heading {
+  text-align: center;
+  margin-bottom: 3.2rem;
+  font-size: 3.6rem;
+}
+
+.faq-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* card glass wrapper */
+.faq-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(235, 54, 86, 0.25);
+  border-radius: 20px;
+  padding: 2.8rem 3.2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.faq-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #eb3656;
+  text-transform: uppercase;
+}
+
+.faq-input {
+  width: 100%;
+  height: 110px;
+  padding: 1.4rem 1.6rem;
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: #e6e6e8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(235, 54, 86, 0.3);
+  border-radius: 12px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  line-height: 1.6;
+}
+
+.faq-input::placeholder {
+  color: rgba(230, 230, 232, 0.35);
+}
+
+.faq-input:focus {
+  border-color: #eb3656;
+  box-shadow: 0 0 0 3px rgba(235, 54, 86, 0.18);
+}
+
+.faq-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #eb3656 0%, #c32e46 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(235, 54, 86, 0.4);
+  letter-spacing: 0.04em;
+}
+
+.faq-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(235, 54, 86, 0.55);
+}
+
+.faq-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.faq-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.faq-response-container {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(235, 54, 86, 0.08) 0%, rgba(195, 46, 70, 0.04) 100%);
+  border: 1px solid rgba(235, 54, 86, 0.3);
+  border-radius: 14px;
+  padding: 2rem 2.4rem;
+  animation: fadeSlideUp 0.4s ease;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.faq-response-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #eb3656;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faq-response-text {
+  font-size: 1.55rem;
+  line-height: 1.75;
+  color: rgba(230, 230, 232, 0.88);
+}

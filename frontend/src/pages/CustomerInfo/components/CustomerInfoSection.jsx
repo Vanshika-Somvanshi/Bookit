@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   HiCalendar,
   HiOutlineClock,
-  HiOutlineCurrencyBangladeshi,
+  HiOutlineCurrencyRupee,
   HiOutlineMapPin,
   HiOutlineTicket,
   HiOutlineTv,
@@ -124,7 +124,7 @@ export const CustomerInfoSection = () => {
 
           <div className="purchase-price-create">
             <div className="purchase-tags">
-              <HiOutlineCurrencyBangladeshi size={18} />
+              <HiOutlineCurrencyRupee size={18} />
               <strong>{cusTicket.ticket_price}</strong>
             </div>
             <div className="purchase-tags">

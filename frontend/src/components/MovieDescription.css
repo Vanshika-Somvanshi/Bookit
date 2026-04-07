@@ -1,55 +1,110 @@
+/* ─── Uncover Movie Insights with AI ─── */
+.ai-insights-section {
+  padding: 6rem 2rem 8rem;
+}
 
-  
-  .description-input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .description-input {
-    width: 100%;
-    max-width: 600px;
-    height: 100px;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1.5rem;
-    resize: none;
-  }
-  
-  .fetch-description-btn {
-    padding: 0.75rem 1.5rem;
-    background-color: #eb3656;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .fetch-description-btn:hover {
-    background-color: #d12e4a;
-  }
-  
-  .response-container {
-    margin-top: 2rem;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .response-heading {
-    font-size: 1.5rem;
-    color: #eb3656;
-    margin-bottom: 0.5rem;
-  }
-  
-  .response-text {
-    font-size: 1.5rem;
-    color: white
-    ;
-  }
-  
+.ai-insights-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.ai-insights-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(235, 54, 86, 0.25);
+  border-radius: 20px;
+  padding: 2.8rem 3.2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.ai-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #eb3656;
+  text-transform: uppercase;
+}
+
+.description-input {
+  width: 100%;
+  height: 110px;
+  padding: 1.4rem 1.6rem;
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: #e6e6e8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(235, 54, 86, 0.3);
+  border-radius: 12px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  line-height: 1.6;
+}
+
+.description-input::placeholder {
+  color: rgba(230, 230, 232, 0.35);
+}
+
+.description-input:focus {
+  border-color: #eb3656;
+  box-shadow: 0 0 0 3px rgba(235, 54, 86, 0.18);
+}
+
+.fetch-description-btn {
+  align-self: flex-start;
+  padding: 1rem 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #eb3656 0%, #c32e46 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(235, 54, 86, 0.4);
+  letter-spacing: 0.04em;
+}
+
+.fetch-description-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(235, 54, 86, 0.55);
+}
+
+.fetch-description-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.fetch-description-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.response-container {
+  background: linear-gradient(135deg, rgba(235, 54, 86, 0.08) 0%, rgba(195, 46, 70, 0.04) 100%);
+  border: 1px solid rgba(235, 54, 86, 0.3);
+  border-radius: 14px;
+  padding: 2rem 2.4rem;
+  animation: fadeSlideUp 0.4s ease;
+}
+
+.response-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #eb3656;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.response-text {
+  font-size: 1.55rem;
+  line-height: 1.8;
+  color: rgba(230, 230, 232, 0.88);
+  white-space: pre-line;
+}

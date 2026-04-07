@@ -21,7 +21,9 @@ export const Footer = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/locationDetails`
         );
-        setLocationData(response.data);
+        if (Array.isArray(response.data)) {
+          setLocationData(response.data);
+        }
       } catch (err) {
         console.log(err);
       } finally {
@@ -127,7 +129,7 @@ export const Footer = () => {
       <p className="copyright">
         Copyright &copy; 2024 by Vanshika Somvanshi, Inc. This work is licensed under
         the terms of the{" "}
-        <a href="https://github.com/rounakbharti">
+        <a href="https://github.com/vansika-somvanshi">
           GNU General Public License, version 3 or later (GPL-3.0-or-later)
         </a>
         .

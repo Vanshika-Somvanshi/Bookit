@@ -22,8 +22,10 @@ export const DateSelector = ({ paymentOngoing }) => {
             theatreId,
           }
         );
-        setShowDatesData(response.data);
-        dispatch(resetCart());
+        if (Array.isArray(response.data)) {
+          setShowDatesData(response.data);
+          dispatch(resetCart());
+        }
       } catch (err) {
         console.error(err);
       } finally {

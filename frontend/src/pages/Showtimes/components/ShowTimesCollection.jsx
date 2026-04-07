@@ -31,7 +31,9 @@ export const ShowTimesCollection = () => {
           }
         );
 
-        setShowtimesData(response.data);
+        if (Array.isArray(response.data)) {
+          setShowtimesData(response.data);
+        }
       } catch (err) {
         console.log(err);
       } finally {

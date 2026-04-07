@@ -21,8 +21,10 @@ export const LocationSelector = ({ paymentOngoing }) => {
           `${import.meta.env.VITE_API_URL}/theatres`
         );
 
-        setLocationData(response.data);
-        dispatch(selectLocation(response.data[0]));
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setLocationData(response.data);
+          dispatch(selectLocation(response.data[0]));
+        }
       } catch (err) {
         console.log(err);
       } finally {

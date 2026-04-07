@@ -458,7 +458,7 @@ export const PurchaseSection = () => {
 
                   <p className="ticket-info-val">
                     {userSeatPrice && userSeats
-                      ? `BDT ${userSeatPrice * userSeats.length}TK`
+                      ? `Rs. ${userSeatPrice * userSeats.length}`
                       : "--"}
                   </p>
                 </li>

@@ -41,7 +41,9 @@ export const PictureQualitySelector = ({
             userMovieId,
           }
         );
-        setHallData(response.data);
+        if (Array.isArray(response.data)) {
+          setHallData(response.data);
+        }
       } catch (err) {
         console.error(err);
       } finally {
@@ -122,7 +124,7 @@ export const PictureQualitySelector = ({
           {`${show.hall_name} (${show.show_type})`}
           <div className="form-showtimes">{options}</div>
         </div>
-        <p className="form-show-price">{`BDT ${show.price_per_seat}TK`}</p>
+        <p className="form-show-price">{`Rs. ${show.price_per_seat}`}</p>
       </div>
     );
   });

@@ -12,6 +12,7 @@ export const HomeCollection = () => {
 
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +20,16 @@ export const HomeCollection = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/latestMovies`
         );
-        setMovieData(response.data);
+        // Backend may return an error object instead of an array if DB fails
+        if (Array.isArray(response.data)) {
+          setMovieData(response.data);
+        } else {
+          console.error("Unexpected API response:", response.data);
+          setError(true);
+        }
       } catch (err) {
         console.error(err);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -47,7 +55,12 @@ export const HomeCollection = () => {
       </div>
 
       {loading && <HashLoader cssOverride={override} color="#eb3656" />}
-      {!loading && (
+      {!loading && error && (
+        <p style={{ textAlign: "center", color: "#eb3656", padding: "2rem" }}>
+          Could not load movies. Please check the server connection.
+        </p>
+      )}
+      {!loading && !error && (
         <div className="home-collection-container">
           <div className="home-collection-inner">{latestMoviesCards}</div>
           <div className="home-collection-inner">{latestMovieCardsDouble}</div>

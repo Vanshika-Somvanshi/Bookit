@@ -19,10 +19,13 @@ export const GenreSelector = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/genres`
         );
-        setGenreData([{ genre: "All" }, ...response.data]);
-        setLoading(false);
+        if (Array.isArray(response.data)) {
+          setGenreData([{ genre: "All" }, ...response.data]);
+        }
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

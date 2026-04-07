@@ -1,8 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const safeJsonParse = (key, fallback) => {
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw === null || raw === "undefined") return fallback;
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+};
+
 const initialState = {
-  isAuthenticated: JSON.parse(localStorage.getItem("authStatus")) || false,
-  signedPerson: JSON.parse(localStorage.getItem("signedInPerson")) || {},
+  isAuthenticated: safeJsonParse("authStatus", false),
+  signedPerson: safeJsonParse("signedInPerson", {}),
   signModalState: false,
   loginModalState: false,
 };

@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 7000;
@@ -7,8 +7,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
-    methods: ["POST", "GET"],
+    origin: "*", // allow all origins for Vercel dynamic URLs
+    methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
   })
 );
 
@@ -16,16 +16,19 @@ app.use(express.json());
 
 let db;
 
-const configuration = {
+const useUrl = !!process.env.MYSQL_PUBLIC_URL;
+const connectionSource = useUrl ? process.env.MYSQL_PUBLIC_URL : {
   host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  ssl: process.env.DB_SSL === "false" ? false : { rejectUnauthorized: false },
 };
 
 // Manually setting connection
 function handleDisconnect() {
-  db = mysql.createConnection(configuration);
+  db = mysql.createConnection(connectionSource);
 
   db.connect(function (err) {
     if (err) {
@@ -146,12 +149,13 @@ app.post("/showtimesDates", (req, res) => {
 
   const sql = `SELECT subquery.showtime_date
   FROM (
-      SELECT DISTINCT showtimes.showtime_date
+      SELECT showtimes.showtime_date
       FROM showtimes
       JOIN shown_in ON showtimes.id = shown_in.showtime_id
       JOIN hall ON shown_in.hall_id = hall.id
       WHERE hall.theatre_id = ?
-      ORDER BY showtimes.id DESC
+      GROUP BY showtimes.showtime_date
+      ORDER BY MAX(showtimes.id) DESC
       LIMIT 4
   ) AS subquery
   ORDER BY subquery.showtime_date ASC`;
@@ -425,7 +429,7 @@ app.post("/customerPurchases", (req, res) => {
   JOIN theatre TH ON H.theatre_id = TH.id
   JOIN seat ST ON T.seat_id = ST.id
   WHERE P.email = ?
-  GROUP BY PA.id 
+  GROUP BY PA.id, P.email, TH.name, H.name, M.name, T.movie_id, M.image_path, S.movie_start_time, S.show_type, S.showtime_date, PA.amount, T.purchase_date
   ORDER BY payment_id DESC`;
 
   db.query(sql, [email], (err, data) => {
@@ -787,5 +791,5 @@ app.post("/movieSwap", (req, res) => {
 
 // For local usage
 app.listen(port, () => {
-  console.log(`AshoDekhi backend running on ${port}`);
+  console.log(`BookIt backend running on port ${port}`);
 });

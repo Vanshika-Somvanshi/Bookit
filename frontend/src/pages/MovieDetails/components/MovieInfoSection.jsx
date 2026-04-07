@@ -51,7 +51,7 @@ export const MovieInfoSection = () => {
           name: movieDetailResponse.data[0].name,
           duration,
           release_date: formattedRelDate,
-          rating: movieDetailResponse.data[0].rating.toFixed(1),
+          rating: Number(movieDetailResponse.data[0].rating || 0).toFixed(1),
         };
 
         setMovieData(formattedMovieData);

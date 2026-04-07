@@ -32,7 +32,9 @@ export const MovieSelector = ({ movieData, setMovieData, paymentOngoing }) => {
           }
         );
 
-        setMovieData(response.data);
+        if (Array.isArray(response.data)) {
+          setMovieData(response.data);
+        }
       } catch (err) {
         console.error(err);
       } finally {

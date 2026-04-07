@@ -33,7 +33,9 @@ export const SeatSelector = ({ seatsData, setSeatsData, paymentOngoing }) => {
             userMovieId,
           }
         );
-        setSeatsData(response.data);
+        if (Array.isArray(response.data)) {
+          setSeatsData(response.data);
+        }
       } catch (err) {
         console.error(err);
       } finally {
